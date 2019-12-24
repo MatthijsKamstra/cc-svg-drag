@@ -1,0 +1,55 @@
+svg {
+  background-color: #ccc;
+  margin: 0;
+  padding: 0;
+}
+/*
+svg:hover {
+  box-shadow: 0 0 20px yellow;
+} */
+
+.cc-svg-drag-wrapper {
+  /* border: 1px solid pink; */
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+.cc-svg-drag-wrapper::after {
+  background: #ffdd57;
+  border-radius: 2px 2px 0 0;
+  bottom: 100%;
+  color: rgba(0, 0, 0, 0.7);
+  content: "CC-SVG-DRAG active";
+  display: inline-block;
+  font-size: 0.4rem;
+  font-weight: 700;
+  right: -1px;
+  letter-spacing: 1px;
+  margin-left: -1px;
+  padding: 3px 5px;
+  position: absolute;
+  text-transform: uppercase;
+  vertical-align: top;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.shadow {
+  cursor: move;
+}
+svg ._shadow:hover {
+  -moz-box-shadow: -5px -5px 5px #888;
+  -webkit-box-shadow: -5px -5px 5px #888;
+  box-shadow: -5px -5px 5px #888;
+
+  /* Use -webkit- only if supporting: Chrome < 54, iOS < 9.3, Android < 4.4.4 */
+  -webkit-filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.7));
+  filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.7));
+  /* Similar syntax to box-shadow */
+}
+
+.static {
+  cursor: not-allowed;
+}
+.draggable {
+  cursor: move;
+}
