@@ -36,7 +36,7 @@ class MainSVGDrag {
 				// }
 				switch (child.tagName) {
 					case 'g':
-						trace('deeper in the rabithole');
+					// trace('deeper in the rabithole');
 					default:
 				}
 			}
@@ -159,6 +159,38 @@ class MainSVGDrag {
 		wrapper.className = 'cc-svg-drag-wrapper';
 		el.parentNode.insertBefore(wrapper, el);
 		wrapper.appendChild(el);
+
+		var cursorCSS = '.static { cursor: not-allowed;}.draggable {  cursor: move;} ';
+		cursorCSS += '.cc-svg-drag-wrapper {position: relative;margin: 0;padding: 0;}.cc-svg-drag-wrapper::after {background:#ffdd57;border-radius:2 px 2 px 0 0;bottom:100 %;color:rgba(0, 0, 0, 0.7);content:"CC-SVG-DRAG active";display:inline-block;font-size:0.4 rem;font-weight:700;right:-1 px;letter-spacing:1 px;margin-left: -1 px;padding:3 px 5 px;position:absolute;text-transform:uppercase;vertical-align:top;font-family:Arial, Helvetica, sans-serif;}';
+		setCSS(cursorCSS, null);
+	}
+
+	/**
+	 * make sure the css is injected, but only once
+	 *
+	 * @param styles 		what styles you want to inject into the file
+	 * @param elementID   	make sure we only inject once...
+	 */
+	function setCSS(styles:String, elementID:String) {
+		if (elementID == null)
+			elementID = ' inject-' + Date.now().getTime();
+
+		styles = (styles);
+		// trace(document.getElementById(elementID));
+
+		var css = document.createStyleElement();
+		css.id = elementID;
+
+		// [mck] it seems that styleSheet isn't in the html externs from Haxe
+		if (untyped css.styleSheet)
+			untyped css.styleSheet.cssText = styles;
+		else
+			css.appendChild(document.createTextNode(styles));
+
+		// [mck] maybe check this before adding
+		document.getElementsByTagName("head")[0].appendChild(css);
+
+		// trace(document.getElementById(elementID));
 	}
 
 	static public function main() {

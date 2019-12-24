@@ -15,7 +15,7 @@ var MainSVGDrag = function() {
 	this.boundaryX1 = 10.5;
 	var _gthis = this;
 	window.document.addEventListener("DOMContentLoaded",function(event) {
-		window.console.info("" + App.NAME + " Dom ready :: build: " + "2019-12-24 13:28:43" + " ");
+		window.console.info("" + App.NAME + " Dom ready :: build: " + "2019-12-24 14:28:05" + " ");
 		_gthis.init1();
 	});
 };
@@ -41,9 +41,7 @@ MainSVGDrag.prototype = {
 				var child = i1;
 				child.setAttribute("class","shadow draggable");
 				this.makeDraggable(child);
-				if(child.tagName == "g") {
-					console.log("src/MainSVGDrag.hx:39:","deeper in the rabithole");
-				}
+				var tmp = child.tagName == "g";
 			}
 		}
 	}
@@ -111,6 +109,23 @@ MainSVGDrag.prototype = {
 		wrapper.className = "cc-svg-drag-wrapper";
 		el.parentNode.insertBefore(wrapper,el);
 		wrapper.appendChild(el);
+		var cursorCSS = ".static { cursor: not-allowed;}.draggable {  cursor: move;} ";
+		cursorCSS += ".cc-svg-drag-wrapper {position: relative;margin: 0;padding: 0;}.cc-svg-drag-wrapper::after {background:#ffdd57;border-radius:2 px 2 px 0 0;bottom:100 %;color:rgba(0, 0, 0, 0.7);content:\"CC-SVG-DRAG active\";display:inline-block;font-size:0.4 rem;font-weight:700;right:-1 px;letter-spacing:1 px;margin-left: -1 px;padding:3 px 5 px;position:absolute;text-transform:uppercase;vertical-align:top;font-family:Arial, Helvetica, sans-serif;}";
+		this.setCSS(cursorCSS,null);
+	}
+	,setCSS: function(styles,elementID) {
+		if(elementID == null) {
+			elementID = " inject-" + new Date().getTime();
+		}
+		styles = styles;
+		var css = window.document.createElement("style");
+		css.id = elementID;
+		if(css.styleSheet) {
+			css.styleSheet.cssText = styles;
+		} else {
+			css.appendChild(window.document.createTextNode(styles));
+		}
+		window.document.getElementsByTagName("head")[0].appendChild(css);
 	}
 	,__class__: MainSVGDrag
 };
@@ -319,6 +334,8 @@ $global.$haxeUID |= 0;
 String.prototype.__class__ = String;
 String.__name__ = true;
 Array.__name__ = true;
+Date.prototype.__class__ = Date;
+Date.__name__ = "Date";
 var Int = { };
 var Dynamic = { };
 var Float = Number;
