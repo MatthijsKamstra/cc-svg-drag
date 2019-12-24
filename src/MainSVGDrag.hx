@@ -161,7 +161,7 @@ class MainSVGDrag {
 		wrapper.appendChild(el);
 
 		var cursorCSS = '.static { cursor: not-allowed;}.draggable {  cursor: move;} ';
-		cursorCSS += '.cc-svg-drag-wrapper {position: relative;margin: 0;padding: 0;}.cc-svg-drag-wrapper::after {background:#ffdd57;border-radius:2 px 2 px 0 0;bottom:100 %;color:rgba(0, 0, 0, 0.7);content:"CC-SVG-DRAG active";display:inline-block;font-size:0.4 rem;font-weight:700;right:-1 px;letter-spacing:1 px;margin-left: -1 px;padding:3 px 5 px;position:absolute;text-transform:uppercase;vertical-align:top;font-family:Arial, Helvetica, sans-serif;}';
+		cursorCSS += '.cc-svg-drag-wrapper {/* border: 1px solid pink; */position: relative;margin: 0;padding: 0;}.cc-svg-drag-wrapper::after {background: #ffdd57;border-radius: 2px 2px 0 0;bottom: 100%;color: rgba(0, 0, 0, 0.7);content: "CC-SVG-DRAG active";display: inline-block;font-size: 0.4rem;font-weight: 700;right: -1px;letter-spacing: 1px;margin-left: -1px;padding: 3px 5px;position: absolute;text-transform: uppercase;vertical-align: top;font-family: Arial, Helvetica, sans-serif;}';
 		setCSS(cursorCSS, null);
 	}
 
